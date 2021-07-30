@@ -1,5 +1,29 @@
 {
+  "name": "strong-reader-tsc",
+  "version": "1.0.0",
+  "description": "Read data from stong app files",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/index.js",
+    "prettier-format": "prettier --config .prettierrc \"src/**/*.ts\" --write"
+  },
+  "author": "Gustavo Inácio",
+  "license": "ISC",
   "dependencies": {
+    "csv-parser": "^3.0.0",
+    "nodemon": "^2.0.12",
     "typescript": "^4.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^16.4.7",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
+    "eslint": "^7.31.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.3.2"
   }
 }

@@ -1,7 +1,9 @@
 // => Type annotations
-const test: string = "testground";
+import Reader from './Reader';
 
-const testStrings: string[] = ["string1", "string2", "stringN"];
+const test: string = 'testground';
+
+const testStrings: string[] = ['string1', 'string2', 'stringN'];
 
 const testBool: boolean = false;
 
@@ -14,18 +16,26 @@ let testObject: {
   keyB: number;
   keyC: boolean;
 };
-testObject = { keyA: "valueA", keyB: 2, keyC: false };
+testObject = { keyA: 'valueA', keyB: 2, keyC: false };
 
 function adder(a: number, b: number): number {
   return a + b;
 }
 
-console.log(
-  test,
-  testStrings,
-  testBool,
-  testInt,
-  testHex,
-  testObject,
-  adder(23, 5)
-);
+async function readStrong() {
+  const strongData = await Reader();
+
+  console.log(2, strongData);
+}
+
+readStrong();
+
+// console.log(
+//   test,
+//   testStrings,
+//   testBool,
+//   testInt,
+//   testHex,
+//   testObject,
+//   adder(23, 5)
+// );
