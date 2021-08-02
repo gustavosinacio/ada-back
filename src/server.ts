@@ -1,12 +1,13 @@
 import express from 'express';
-import { thisCourseInfo, addEntry } from './routes';
+import { setsRoutes } from './routes/sets.routes';
 
 const app = express();
 
 app.use(express.json());
+app.use(setsRoutes);
 
 app.listen(3333, () => console.log('--- Server is running on port 3333'));
 
-app.get('/', thisCourseInfo);
-
-app.post('/entry', addEntry);
+app.get('/', (request: Request, response: Response) => {
+  return response.json({ message: 'v0' });
+});
