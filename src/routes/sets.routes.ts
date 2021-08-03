@@ -1,7 +1,7 @@
 import { response, Router } from 'express';
 import { Request, Response } from 'express';
 import { v4 as uuidV4 } from 'uuid';
-import { Exercise } from '../model/Exercise';
+import { Exercise } from '../model/Set';
 
 const setsRoutes = Router();
 
@@ -56,9 +56,9 @@ setsRoutes.post('/sets', (request: Request, response: Response) => {
   } = request.body;
 
   const created_at = new Date();
-  const exercise = new Exercise();
+  const set = new Set();
 
-  Object.assign(exercise, {
+  Object.assign(set, {
     sessionName,
     exerciseName,
     setOrder,
@@ -76,7 +76,7 @@ setsRoutes.post('/sets', (request: Request, response: Response) => {
 
   return response
     .status(201)
-    .json({ message: `set ${uuid} created at ${created_at}`, exercise });
+    .json({ message: `set ${uuid} created at ${created_at}`, set });
 });
 
 export { setsRoutes };

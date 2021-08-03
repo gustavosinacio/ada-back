@@ -1,6 +1,6 @@
 import { v4 as uuidV4 } from 'uuid';
 
-class Exercise {
+class Set {
   id?: string;
   created_at: string;
   sessionName: string;
@@ -21,4 +21,4 @@ class Exercise {
   }
 }
 
-export { Exercise };
+export { Set };
