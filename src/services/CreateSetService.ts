@@ -1,9 +1,6 @@
-import { v4 as uuidV4 } from 'uuid';
+import { SetsRepository } from '../repositories/SetsRepository';
 
-import { Set } from '../model/Set';
-
-// DTO: Data Transfer Object
-interface ICreateSetDTO {
+interface IRequest {
   session_name: string;
   exercise_name: string;
   set_order: number;
@@ -17,14 +14,9 @@ interface ICreateSetDTO {
   rpe: number;
 }
 
-class SetsRepository {
-  private sets: Set[] = [];
-
-  constructor() {
-    this.sets = [];
-  }
-
-  create({
+class CreateSetService {
+  constructor(private setsRepository: SetsRepository) {}
+  execute({
     session_name,
     exercise_name,
     set_order,
@@ -36,11 +28,8 @@ class SetsRepository {
     session_notes,
     set_notes,
     rpe,
-  }: ICreateSetDTO): Set {
-    const created_at = new Date();
-    const set = new Set();
-
-    Object.assign(set, {
+  }: IRequest): IRequest {
+    const newSet = this.setsRepository.create({
       session_name,
       exercise_name,
       set_order,
@@ -52,16 +41,10 @@ class SetsRepository {
       session_notes,
       set_notes,
       rpe,
-      created_at,
     });
 
-    this.sets.push(set);
-    return set;
-  }
-
-  list(): Set[] {
-    return this.sets;
+    return newSet;
   }
 }
 
-export { SetsRepository };
+export { CreateSetService };
