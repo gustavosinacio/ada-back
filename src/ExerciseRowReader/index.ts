@@ -13,9 +13,9 @@ interface UnformatedExerciseSet {
 }
 
 interface ExerciseSet {
-  date: string;
+  created_at: string;
   sessionName: string;
-  exercise: string;
+  exerciseName: string;
   setOrder: string;
   kg: string;
   reps: string;
@@ -28,9 +28,9 @@ interface ExerciseSet {
 
 const RowReader = (row: UnformatedExerciseSet): ExerciseSet => {
   const {
-    Data: date,
+    Data: created_at,
     'Nome do treino': sessionName,
-    'Nome do exercício': exercise,
+    'Nome do exercício': exerciseName,
     'Ordem da série': setOrder,
     Peso: kg,
     Reps: reps,
@@ -43,9 +43,9 @@ const RowReader = (row: UnformatedExerciseSet): ExerciseSet => {
   } = row;
 
   const formatedRow: ExerciseSet = {
-    date,
+    created_at,
     sessionName,
-    exercise,
+    exerciseName,
     setOrder,
     kg,
     reps,

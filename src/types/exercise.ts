@@ -8,14 +8,14 @@ export interface UnformatedExerciseSet {
   ['Distância']: string;
   Segundos: string;
   Notas: string;
-  'Notas do treino': string;
+  ['Notas do treino']: string;
   RPE: string;
 }
 
 export interface ExerciseSet {
-  date: string;
+  created_at: string;
   sessionName: string;
-  exercise: string;
+  exerciseName: string;
   setOrder: string;
   kg: string;
   reps: string;

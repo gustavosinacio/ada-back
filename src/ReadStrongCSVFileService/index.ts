@@ -18,9 +18,9 @@ interface UnformatedExerciseSet {
 }
 
 interface ExerciseSet {
-  date: string;
+  created_at: string;
   sessionName: string;
-  exercise: string;
+  exerciseName: string;
   setOrder: string;
   kg: string;
   reps: string;
