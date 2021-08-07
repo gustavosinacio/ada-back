@@ -44,20 +44,25 @@ setsRoutes.post('/sets', (request: Request, response: Response) => {
 });
 
 setsRoutes.get('/setsbydate', (req, res) => {
-  console.log(req.query);
-
   const { year, month, day } = req.query;
-  const numberedYear = parseInt(year, 10);
-  const numberedMonth = parseInt(month, 10);
-  const numberedDay = parseInt(day, 10);
 
-  const found = setsRepository.findByDate(
-    numberedYear,
-    numberedMonth,
-    numberedDay,
-  );
+  if (
+    typeof year === 'string' &&
+    typeof month === 'string' &&
+    typeof day === 'string'
+  ) {
+    const numberedYear = parseInt(year, 10);
+    const numberedMonth = parseInt(month, 10);
+    const numberedDay = parseInt(day, 10);
 
-  return res.json(found);
+    const found = setsRepository.findByDate(
+      numberedYear,
+      numberedMonth,
+      numberedDay,
+    );
+
+    return res.json(found);
+  }
 });
 
 export { setsRoutes };
