@@ -1,8 +1,8 @@
 import { Router, Request, Response } from 'express';
-import { CreateSetService } from '../services/CreateSetService';
+import { CreateSetService } from '../modules/exercises/services/CreateSetService';
 
-import { SetsRepository } from '../repositories/SetsRepository';
-import { PostgresSetsRepository } from '../repositories/PostgresSetsRepository';
+import { SetsRepository } from '../modules/exercises/repositories/SetsRepository';
+import { PostgresSetsRepository } from '../modules/exercises/repositories/PostgresSetsRepository';
 
 const setsRoutes = Router();
 const setsRepository = new SetsRepository();
@@ -46,7 +46,18 @@ setsRoutes.post('/sets', (request: Request, response: Response) => {
 setsRoutes.get('/setsbydate', (req, res) => {
   console.log(req.query);
 
-  return res.json(setsRepository.findByDate(req.query.date));
+  const { year, month, day } = req.query;
+  const numberedYear = parseInt(year, 10);
+  const numberedMonth = parseInt(month, 10);
+  const numberedDay = parseInt(day, 10);
+
+  const found = setsRepository.findByDate(
+    numberedYear,
+    numberedMonth,
+    numberedDay,
+  );
+
+  return res.json(found);
 });
 
 export { setsRoutes };

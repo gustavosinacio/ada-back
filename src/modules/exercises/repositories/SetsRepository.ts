@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { v4 as uuidV4 } from 'uuid';
 
 import { Set } from '../model/Set';
@@ -49,10 +50,18 @@ class SetsRepository implements ISetsRepository {
     return this.sets;
   }
 
-  findByDate(date): Set {
-    return this.sets.find((set) => {
-      console.log(typeof set.created_at);
-      return set.created_at.includes(date);
+  findByDate(year: number, month: number, day: number): Set[] {
+    const DATE_OFFSET = 1;
+    return this.sets.filter((set) => {
+      console.log({ year, month, day, setDate: set.created_at });
+
+      const setYear = set.created_at.getFullYear();
+      const setMonth = set.created_at.getMonth() + DATE_OFFSET;
+      const setDay = set.created_at.getDay() + DATE_OFFSET;
+
+      if (setYear === year && setMonth === month && setDay === day) {
+        return set;
+      }
     });
   }
 }

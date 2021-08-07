@@ -16,7 +16,7 @@ interface ICreateSetDTO {
 }
 
 interface ISetsRepository {
-  findByDate(date: string): Set;
+  findByDate(year: number, month: number, day: number): Set[];
   list(): Set[];
   create({
     session_name,
