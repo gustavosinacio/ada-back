@@ -16,6 +16,14 @@ interface ICreateSetDTO {
 }
 
 interface ISetsRepository {
+  /**
+   * insert three number corresponding to year, month and day and return a list
+   * of sets from that date
+   * @param year
+   * @param month
+   * @param day
+   * @returns set[]
+   */
   findByDate(year: number, month: number, day: number): Set[];
   list(): Set[];
   create({

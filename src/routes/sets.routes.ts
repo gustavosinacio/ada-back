@@ -1,68 +1,40 @@
-import { Router, Request, Response } from 'express';
-import { CreateSetService } from '../modules/exercises/services/CreateSetService';
+import { Router } from 'express';
 
-import { SetsRepository } from '../modules/exercises/repositories/SetsRepository';
-import { PostgresSetsRepository } from '../modules/exercises/repositories/PostgresSetsRepository';
+// import { SetsRepository } from '../modules/exercises/repositories/SetsRepository';
+import { createSetController } from '../modules/exercises/useCases/createSet';
+import { listSetsController } from '../modules/exercises/useCases/listSets';
 
 const setsRoutes = Router();
-const setsRepository = new SetsRepository();
+// const setsRepository = new SetsRepository();
 
-setsRoutes.get('/sets', (request: Request, response: Response) => {
-  return response.json(setsRepository.list()).send();
+setsRoutes.get('/', (req, res) => {
+  return listSetsController.handle(req, res);
 });
 
-setsRoutes.post('/sets', (request: Request, response: Response) => {
-  const {
-    session_name,
-    exercise_name,
-    set_order,
-    weight_kg,
-    reps,
-    distance_meters,
-    seconds,
-    notes,
-    session_notes,
-    set_notes,
-    rpe,
-  } = request.body;
-  const createSetService = new CreateSetService(setsRepository);
-  const newSet = createSetService.execute({
-    session_name,
-    exercise_name,
-    set_order,
-    weight_kg,
-    reps,
-    distance_meters,
-    seconds,
-    notes,
-    session_notes,
-    set_notes,
-    rpe,
-  });
-
-  return response.status(201).json({ message: 'Success', newSet }).send();
+setsRoutes.post('/', (req, res) => {
+  return createSetController.handle(req, res);
 });
 
-setsRoutes.get('/setsbydate', (req, res) => {
-  const { year, month, day } = req.query;
+// setsRoutes.get('/bydate', (req, res) => {
+//   const { year, month, day } = req.query;
 
-  if (
-    typeof year === 'string' &&
-    typeof month === 'string' &&
-    typeof day === 'string'
-  ) {
-    const numberedYear = parseInt(year, 10);
-    const numberedMonth = parseInt(month, 10);
-    const numberedDay = parseInt(day, 10);
+//   if (
+//     typeof year === 'string' &&
+//     typeof month === 'string' &&
+//     typeof day === 'string'
+//   ) {
+//     const numberedYear = parseInt(year, 10);
+//     const numberedMonth = parseInt(month, 10);
+//     const numberedDay = parseInt(day, 10);
 
-    const found = setsRepository.findByDate(
-      numberedYear,
-      numberedMonth,
-      numberedDay,
-    );
+//     const found = setsRepository.findByDate(
+//       numberedYear,
+//       numberedMonth,
+//       numberedDay,
+//     );
 
-    return res.json(found);
-  }
-});
+//     return res.json(found);
+//   }
+// });
 
 export { setsRoutes };

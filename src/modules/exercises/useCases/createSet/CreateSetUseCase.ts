@@ -1,5 +1,4 @@
-import { ISetsRepository } from '../repositories/ISetsRepository';
-import { SetsRepository } from '../repositories/SetsRepository';
+import { ISetsRepository } from '../../interfaces/ISetsRepository';
 
 interface IRequest {
   session_name: string;
@@ -15,7 +14,7 @@ interface IRequest {
   rpe: number;
 }
 
-class CreateSetService {
+class CreateSetUseCase {
   constructor(private setsRepository: ISetsRepository) {}
   execute({
     session_name,
@@ -29,8 +28,8 @@ class CreateSetService {
     session_notes,
     set_notes,
     rpe,
-  }: IRequest): IRequest {
-    const newSet = this.setsRepository.create({
+  }: IRequest): void {
+    this.setsRepository.create({
       session_name,
       exercise_name,
       set_order,
@@ -43,9 +42,7 @@ class CreateSetService {
       set_notes,
       rpe,
     });
-
-    return newSet;
   }
 }
 
-export { CreateSetService };
+export { CreateSetUseCase };

@@ -2,13 +2,32 @@ import moment from 'moment';
 import { v4 as uuidV4 } from 'uuid';
 
 import { Set } from '../model/Set';
-import { ICreateSetDTO, ISetsRepository } from './ISetsRepository';
+import { ICreateSetDTO, ISetsRepository } from '../interfaces/ISetsRepository';
+
+// singleton;
 
 class SetsRepository implements ISetsRepository {
   private sets: Set[] = [];
 
-  constructor() {
+  private static INSTANCE: SetsRepository;
+
+  /*
+   */
+
+  /** Private on the constructor makes me unable to just create
+   * a new SetsRepository.
+   * This will be usefull whenever I need to instanciate a class only once, making
+   * this code a SINGLETON
+   */
+  private constructor() {
     this.sets = [];
+  }
+
+  public static getInstance(): SetsRepository {
+    if (!SetsRepository.INSTANCE) {
+      SetsRepository.INSTANCE = new SetsRepository();
+    }
+    return SetsRepository.INSTANCE;
   }
 
   create({
