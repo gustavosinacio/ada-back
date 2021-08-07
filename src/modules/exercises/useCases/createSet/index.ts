@@ -1,4 +1,4 @@
-import { SetsRepository } from '../../repositories/SetsRepository';
+import { SetsRepository } from '../../repositories/implementations/SetsRepository';
 import { CreateSetController } from './CreateSetController';
 import { CreateSetUseCase } from './CreateSetUseCase';
 

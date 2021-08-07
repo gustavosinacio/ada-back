@@ -1,5 +1,5 @@
-import { Set } from '../model/Set';
-import { ICreateSetDTO, ISetsRepository } from '../interfaces/ISetsRepository';
+import { Set } from '../../model/Set';
+import { ICreateSetDTO, ISetsRepository } from '../ISetsRepository';
 
 // singleton;
 

@@ -1,5 +1,5 @@
 import { Set } from '../../model/Set';
-import { ISetsRepository } from '../../interfaces/ISetsRepository';
+import { ISetsRepository } from '../../repositories/ISetsRepository';
 
 class ListSetsUseCase {
   constructor(private setsRepository: ISetsRepository) {}

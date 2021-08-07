@@ -1,4 +1,4 @@
-import { ISetsRepository } from '../../interfaces/ISetsRepository';
+import { ISetsRepository } from '../../repositories/ISetsRepository';
 
 interface IRequest {
   session_name: string;

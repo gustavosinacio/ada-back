@@ -1,11 +1,11 @@
-import { IExercisesRepository } from '../interfaces/IExercisesRepository';
+import { IExercisesRepository } from '../../repositories/IExercisesRepository';
 
 interface IRequest {
   name: string;
   description: string;
   instructions: string[];
 }
-class CreateExerciseService {
+class CreateExerciseUseCase {
   constructor(private exercisesRepository: IExercisesRepository) {}
 
   execute({ name, description, instructions }: IRequest): void {
@@ -21,4 +21,4 @@ class CreateExerciseService {
   }
 }
 
-export { CreateExerciseService };
+export { CreateExerciseUseCase };

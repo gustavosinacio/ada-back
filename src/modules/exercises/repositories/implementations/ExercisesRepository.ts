@@ -1,8 +1,8 @@
 import {
   IExercisesRepository,
   ICreateExerciseDTO,
-} from '../interfaces/IExercisesRepository';
-import { Exercise } from '../model/Exercise';
+} from '../IExercisesRepository';
+import { Exercise } from '../../model/Exercise';
 
 // singleton;
 

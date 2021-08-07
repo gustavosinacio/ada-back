@@ -1,21 +1,15 @@
 import { Router } from 'express';
-import { CreateExerciseService } from '../modules/exercises/services/CreateExerciseService';
-import { ExercisesRepository } from '../modules/exercises/repositories/ExercisesRepository';
+import { listExercisesController } from '../modules/exercises/useCases/listExercises';
+import { createExercisesController } from '../modules/exercises/useCases/createExercise';
 
 const exercisesRoutes = Router();
-const exercisesRepository = new ExercisesRepository();
 
 exercisesRoutes.post('/', (req, res) => {
-  const { name, description, instructions } = req.body;
-  const createExerciseService = new CreateExerciseService(exercisesRepository);
-
-  createExerciseService.execute({ name, description, instructions });
-
-  return res.status(201).send();
+  return createExercisesController.handle(req, res);
 });
 
 exercisesRoutes.get('/', (req, res) => {
-  return res.json(exercisesRepository.list());
+  return listExercisesController.handle(req, res);
 });
 
 export { exercisesRoutes };
