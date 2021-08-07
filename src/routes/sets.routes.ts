@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 import { CreateSetService } from '../services/CreateSetService';
 
 import { SetsRepository } from '../repositories/SetsRepository';
+import { PostgresSetsRepository } from '../repositories/PostgresSetsRepository';
 
 const setsRoutes = Router();
 const setsRepository = new SetsRepository();
@@ -40,6 +41,12 @@ setsRoutes.post('/sets', (request: Request, response: Response) => {
   });
 
   return response.status(201).json({ message: 'Success', newSet }).send();
+});
+
+setsRoutes.get('/setsbydate', (req, res) => {
+  console.log(req.query);
+
+  return res.json(setsRepository.findByDate(req.query.date));
 });
 
 export { setsRoutes };

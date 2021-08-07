@@ -1,3 +1,4 @@
+import { ISetsRepository } from '../repositories/ISetsRepository';
 import { SetsRepository } from '../repositories/SetsRepository';
 
 interface IRequest {
@@ -15,7 +16,7 @@ interface IRequest {
 }
 
 class CreateSetService {
-  constructor(private setsRepository: SetsRepository) {}
+  constructor(private setsRepository: ISetsRepository) {}
   execute({
     session_name,
     exercise_name,

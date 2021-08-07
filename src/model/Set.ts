@@ -2,7 +2,7 @@ import { v4 as uuidV4 } from 'uuid';
 
 class Set {
   id?: string;
-  created_at: string;
+  created_at: Date;
   session_name: string;
   exercise_name: string;
   set_order: number;

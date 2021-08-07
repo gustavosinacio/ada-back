@@ -1,26 +1,29 @@
 import { Set } from '../model/Set';
-import { ISetsRepository } from './ISetsRepository';
+import { ISetsRepository, ICreateSetDTO } from './ISetsRepository';
 
 class PostgresSetsRepository implements ISetsRepository {
   findByDate(date: string): Set {
-    throw new Error('Method not implemented.');
+    console.log('findByDate', date);
+    return null;
   }
   list(): Set[] {
     throw new Error('Method not implemented.');
   }
-  create(
-    session_name: string,
-    exercise_name: string,
-    set_order: number,
-    weight_kg: number,
-    reps: number,
-    distance_meters: number,
-    seconds: number,
-    notes: string[],
-    session_notes: string[],
-    set_notes: string[],
-    rpe: number,
-  ): void {
+  create({
+    session_name,
+    exercise_name,
+    set_order,
+    weight_kg,
+    reps,
+    distance_meters,
+    seconds,
+    notes,
+    session_notes,
+    set_notes,
+    rpe,
+  }: ICreateSetDTO): void {
     throw new Error('Method not implemented.');
   }
 }
+
+export { PostgresSetsRepository };

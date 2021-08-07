@@ -1,23 +1,9 @@
 import { v4 as uuidV4 } from 'uuid';
 
 import { Set } from '../model/Set';
+import { ICreateSetDTO, ISetsRepository } from './ISetsRepository';
 
-// DTO: Data Transfer Object
-interface ICreateSetDTO {
-  session_name: string;
-  exercise_name: string;
-  set_order: number;
-  weight_kg: number;
-  reps: number;
-  distance_meters: number;
-  seconds: number;
-  notes: string[];
-  session_notes: string[];
-  set_notes: string[];
-  rpe: number;
-}
-
-class SetsRepository {
+class SetsRepository implements ISetsRepository {
   private sets: Set[] = [];
 
   constructor() {
@@ -61,6 +47,13 @@ class SetsRepository {
 
   list(): Set[] {
     return this.sets;
+  }
+
+  findByDate(date): Set {
+    return this.sets.find((set) => {
+      console.log(typeof set.created_at);
+      return set.created_at.includes(date);
+    });
   }
 }
 
