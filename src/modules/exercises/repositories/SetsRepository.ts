@@ -1,6 +1,3 @@
-import moment from 'moment';
-import { v4 as uuidV4 } from 'uuid';
-
 import { Set } from '../model/Set';
 import { ICreateSetDTO, ISetsRepository } from '../interfaces/ISetsRepository';
 
@@ -10,9 +7,6 @@ class SetsRepository implements ISetsRepository {
   private sets: Set[] = [];
 
   private static INSTANCE: SetsRepository;
-
-  /*
-   */
 
   /** Private on the constructor makes me unable to just create
    * a new SetsRepository.

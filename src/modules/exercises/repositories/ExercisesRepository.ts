@@ -4,11 +4,28 @@ import {
 } from '../interfaces/IExercisesRepository';
 import { Exercise } from '../model/Exercise';
 
+// singleton;
+
 class ExercisesRepository implements IExercisesRepository {
   private exercises: Exercise[];
 
-  constructor() {
+  private static INSTANCE: ExercisesRepository;
+
+  /** Private on the constructor makes me unable to just create
+   * a new SetsRepository.
+   * This will be usefull whenever I need to instanciate a class only once, making
+   * this code a SINGLETON
+   */
+
+  private constructor() {
     this.exercises = [];
+  }
+
+  public static getInstance(): ExercisesRepository {
+    if (!ExercisesRepository.INSTANCE) {
+      ExercisesRepository.INSTANCE = new ExercisesRepository();
+    }
+    return ExercisesRepository.INSTANCE;
   }
 
   create({ name, description, instructions }: ICreateExerciseDTO): void {
