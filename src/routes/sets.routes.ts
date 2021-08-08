@@ -1,11 +1,15 @@
 import { Router } from 'express';
+import multer from 'multer';
 
 // import { SetsRepository } from '../modules/exercises/repositories/SetsRepository';
 import { createSetController } from '../modules/exercises/useCases/createSet';
 import { listSetsController } from '../modules/exercises/useCases/listSets';
+import { importSetsController } from '../modules/exercises/useCases/importSets';
 
 const setsRoutes = Router();
-// const setsRepository = new SetsRepository();
+const upload = multer({
+  dest: './tmp',
+});
 
 setsRoutes.get('/', (req, res) => {
   return listSetsController.handle(req, res);
@@ -13,6 +17,10 @@ setsRoutes.get('/', (req, res) => {
 
 setsRoutes.post('/', (req, res) => {
   return createSetController.handle(req, res);
+});
+
+setsRoutes.post('/import', upload.single('file'), (request, response) => {
+  return importSetsController.handle(request, response);
 });
 
 // setsRoutes.get('/bydate', (req, res) => {
