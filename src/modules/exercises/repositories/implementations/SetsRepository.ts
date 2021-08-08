@@ -66,15 +66,17 @@ class SetsRepository implements ISetsRepository {
 
   findByDate(year: number, month: number, day: number): Set[] {
     const DATE_OFFSET = 1;
-    return this.sets.filter((set) => {
+    const filteredSets = this.sets.filter((set) => {
       const setYear = set.created_at.getFullYear();
       const setMonth = set.created_at.getMonth() + DATE_OFFSET;
-      const setDay = set.created_at.getDay() + DATE_OFFSET;
+      const setDay = set.created_at.getDate();
 
       if (setYear === year && setMonth === month && setDay === day) {
         return set;
       }
     });
+
+    return filteredSets;
   }
 }
 

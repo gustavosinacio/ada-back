@@ -5,6 +5,7 @@ import multer from 'multer';
 import { createSetController } from '../modules/exercises/useCases/createSet';
 import { listSetsController } from '../modules/exercises/useCases/listSets';
 import { importSetsController } from '../modules/exercises/useCases/importSets';
+import { listSetsByDateController } from '../modules/exercises/useCases/listSetsByDate';
 
 const setsRoutes = Router();
 const upload = multer({
@@ -23,26 +24,8 @@ setsRoutes.post('/import', upload.single('file'), (request, response) => {
   return importSetsController.handle(request, response);
 });
 
-// setsRoutes.get('/bydate', (req, res) => {
-//   const { year, month, day } = req.query;
-
-//   if (
-//     typeof year === 'string' &&
-//     typeof month === 'string' &&
-//     typeof day === 'string'
-//   ) {
-//     const numberedYear = parseInt(year, 10);
-//     const numberedMonth = parseInt(month, 10);
-//     const numberedDay = parseInt(day, 10);
-
-//     const found = setsRepository.findByDate(
-//       numberedYear,
-//       numberedMonth,
-//       numberedDay,
-//     );
-
-//     return res.json(found);
-//   }
-// });
+setsRoutes.get('/bydate', (request, response) => {
+  return listSetsByDateController.handle(request, response);
+});
 
 export { setsRoutes };

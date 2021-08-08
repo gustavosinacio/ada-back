@@ -13,7 +13,7 @@ interface ICreateSetDTO {
   session_notes?: string[];
   distance_meters?: number;
   seconds?: number;
-  created_at?: string;
+  created_at?: Date;
 }
 
 interface ISetsRepository {

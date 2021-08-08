@@ -20,7 +20,7 @@ interface IUnformatedStrongSet {
 }
 
 interface IFormatedSet extends ICreateSetDTO {
-  created_at: string;
+  created_at: Date;
 }
 
 class ImportSetsUseCase {
@@ -37,7 +37,7 @@ class ImportSetsUseCase {
       parserFile
         .on('data', (line: IUnformatedStrongSet) => {
           const {
-            Data: created_at,
+            Data,
             'Nome do treino': session_name,
             'Nome do exercício': exercise_name,
             'Ordem da série': set_order,
@@ -52,7 +52,7 @@ class ImportSetsUseCase {
           } = line;
 
           const formatedRow: IFormatedSet = {
-            created_at,
+            created_at: new Date(Data),
             session_name,
             exercise_name,
             set_order: parseInt(set_order, 10),
