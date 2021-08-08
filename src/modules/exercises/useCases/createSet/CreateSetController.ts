@@ -17,7 +17,7 @@ class CreateSetController {
       set_notes,
       rpe,
     } = req.body;
-    const newSet = this.createSetUseCase.execute({
+    this.createSetUseCase.execute({
       session_name,
       exercise_name,
       set_order,
@@ -31,7 +31,7 @@ class CreateSetController {
       rpe,
     });
 
-    return res.status(201).json({ message: 'Success', newSet }).send();
+    return res.status(201).json({ message: 'Success' }).send();
   }
 }
 

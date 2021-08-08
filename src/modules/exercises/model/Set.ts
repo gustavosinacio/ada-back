@@ -2,7 +2,7 @@ import { v4 as uuidV4 } from 'uuid';
 
 class Set {
   id?: string;
-  created_at: Date;
+  created_at?: Date;
   session_name: string;
   exercise_name: string;
   set_order: number;
@@ -16,9 +16,7 @@ class Set {
   rpe: number;
 
   constructor() {
-    if (!this.id) {
-      this.id = uuidV4();
-    }
+    if (!this.id) this.id = uuidV4();
   }
 }
 

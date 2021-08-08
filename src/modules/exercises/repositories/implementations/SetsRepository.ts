@@ -36,9 +36,10 @@ class SetsRepository implements ISetsRepository {
     session_notes,
     set_notes,
     rpe,
+    created_at,
   }: ICreateSetDTO): Set {
-    const created_at = new Date();
     const set = new Set();
+    let date = new Date();
 
     Object.assign(set, {
       session_name,
@@ -52,7 +53,7 @@ class SetsRepository implements ISetsRepository {
       session_notes,
       set_notes,
       rpe,
-      created_at,
+      created_at: created_at || date,
     });
 
     this.sets.push(set);
