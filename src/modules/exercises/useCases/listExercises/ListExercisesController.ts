@@ -3,10 +3,10 @@ import { ListExercisesUseCase } from './ListExercisesUseCase';
 
 class ListExercisesController {
   constructor(private listExercisesUseCase: ListExercisesUseCase) {}
-  handle(req: Request, res: Response): Response {
+  handle(request: Request, response: Response): Response {
     const allExercises = this.listExercisesUseCase.execute();
 
-    return res.json(allExercises);
+    return response.json(allExercises);
   }
 }
 
