@@ -1,0 +1,11 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "AdaServer Documentation",
+    "description": "Documentation for Ada app serving exercise information per user",
+    "version": "0.1",
+    "contact": {
+      "email": "gsinacio94@gmail.com"
+    }
+  }
+}
