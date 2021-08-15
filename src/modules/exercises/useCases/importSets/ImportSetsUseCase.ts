@@ -69,6 +69,7 @@ class ImportSetsUseCase {
           sets.push(formatedRow);
         })
         .on('end', () => {
+          fs.promises.unlink(file.path);
           resolve(sets);
         })
         .on('error', (err) => {

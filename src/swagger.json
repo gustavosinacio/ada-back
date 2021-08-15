@@ -81,7 +81,58 @@
         "description": "List all created sets",
         "responses": {
           "200": {
-            "description": "Successfully returned"
+            "description": "Successfully returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "session_name": {
+                        "type": "string"
+                      },
+                      "exercise_name": {
+                        "type": "string"
+                      },
+                      "set_order": {
+                        "type": "number"
+                      },
+                      "weight_kg": {
+                        "type": "number"
+                      },
+                      "reps": {
+                        "type": "number"
+                      },
+                      "notes": {
+                        "type": "array"
+                      },
+                      "session_notes": {
+                        "type": "array"
+                      },
+                      "set_notes": {
+                        "type": "array"
+                      },
+                      "rpe": {
+                        "type": "number"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "distance_meters": {
+                        "type": "string"
+                      },
+                      "seconds": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -128,7 +179,31 @@
         "description": "List all created exercises",
         "responses": {
           "200": {
-            "description": "Successfully returned"
+            "description": "Successfully returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "instructions": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
