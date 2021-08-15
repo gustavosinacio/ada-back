@@ -7,5 +7,131 @@
     "contact": {
       "email": "gsinacio94@gmail.com"
     }
+  },
+  "paths": {
+    "/sets": {
+      "post": {
+        "tags": ["sets"],
+        "summary": "Create a set",
+        "description": "Create a new set",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "session_name": {
+                    "type": "string"
+                  },
+                  "exercise_name": {
+                    "type": "string"
+                  },
+                  "set_order": {
+                    "type": "number"
+                  },
+                  "weight_kg": {
+                    "type": "number"
+                  },
+                  "reps": {
+                    "type": "number"
+                  },
+                  "notes": {
+                    "type": "array"
+                  },
+                  "session_notes": {
+                    "type": "array"
+                  },
+                  "set_notes": {
+                    "type": "array"
+                  },
+                  "rpe": {
+                    "type": "number"
+                  },
+                  "distance_meters": {
+                    "type": "string"
+                  },
+                  "seconds": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "session_name": "test Back Biceps",
+                  "exercise_name": "Reverse Fly (Dumbbell)",
+                  "set_order": 1,
+                  "weight_kg": 18,
+                  "reps": 12,
+                  "notes": ["test note 1", "test note 2"],
+                  "session_notes": ["test note 3", "test note 4"],
+                  "set_notes": ["test note 5", "test note 6"],
+                  "rpe": 9
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created"
+          }
+        }
+      },
+      "get": {
+        "tags": ["sets"],
+        "summary": "List sets",
+        "description": "List all created sets",
+        "responses": {
+          "200": {
+            "description": "Successfully returned"
+          }
+        }
+      }
+    },
+    "/exercises": {
+      "post": {
+        "tags": ["exercises"],
+        "summary": "Create exercise",
+        "description": "Create a new exercise",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "instructions": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "test exercise {{$randomUUID}}",
+                  "description": "test description: {{$randomPhrase}}",
+                  "instructions": "test instructions: instructions here"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created"
+          }
+        }
+      },
+      "get": {
+        "tags": ["exercises"],
+        "summary": "List exercises",
+        "description": "List all created exercises",
+        "responses": {
+          "200": {
+            "description": "Successfully returned"
+          }
+        }
+      }
+    }
   }
 }
