@@ -29,6 +29,8 @@ class CreateSetUseCase {
     set_notes,
     rpe,
   }: IRequest): void {
+    console.log('create set service');
+
     this.setsRepository.create({
       session_name,
       exercise_name,

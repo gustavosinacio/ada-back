@@ -79,6 +79,8 @@ class ImportSetsUseCase {
   }
 
   async execute(file: Express.Multer.File): Promise<void> {
+    console.log('import sets service');
+
     const sets = await this.loadSets(file);
 
     sets.map((set) => this.setsRepository.create(set));

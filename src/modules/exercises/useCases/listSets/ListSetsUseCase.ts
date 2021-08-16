@@ -5,6 +5,8 @@ class ListSetsUseCase {
   constructor(private setsRepository: ISetsRepository) {}
 
   execute(): Set[] {
+    console.log('list sets service');
+
     const sets = this.setsRepository.list();
     return sets;
   }
