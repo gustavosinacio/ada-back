@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateExercises1629208833276 implements MigrationInterface {
+export class CreateSets1629212050377 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'exercises',
+        name: 'sets',
         columns: [
           {
             name: 'id',
@@ -12,16 +12,39 @@ export class CreateExercises1629208833276 implements MigrationInterface {
             isPrimary: true,
           },
           {
-            name: 'name',
+            name: 'session_name',
             type: 'varchar',
           },
           {
-            name: 'description',
+            name: 'exercise_name',
             type: 'varchar',
           },
           {
-            name: 'instructions',
-            type: 'varchar',
+            name: 'set_order',
+            type: 'integer',
+          },
+          {
+            name: 'weight_kg',
+            type: 'float',
+          },
+          {
+            name: 'reps',
+            type: 'integer',
+          },
+          {
+            name: 'rpe',
+            type: 'float',
+            isNullable: true,
+          },
+          {
+            name: 'distance_meters',
+            type: 'float',
+            isNullable: true,
+          },
+          {
+            name: 'seconds',
+            type: 'integer',
+            isNullable: true,
           },
           {
             name: 'created_at',
@@ -39,6 +62,6 @@ export class CreateExercises1629208833276 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('exercises');
+    await queryRunner.dropTable('sets');
   }
 }

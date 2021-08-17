@@ -25,8 +25,8 @@ interface ISetsRepository {
    * @param day
    * @returns set[]
    */
-  findByDate(year: number, month: number, day: number): Set[];
-  list(): Set[];
+  findByDate(year: number, month: number, day: number): Promise<Set[]>;
+  list(): Promise<Set[]>;
   create({
     session_name,
     exercise_name,
@@ -40,7 +40,7 @@ interface ISetsRepository {
     set_notes,
     rpe,
     created_at,
-  }: ICreateSetDTO): void;
+  }: ICreateSetDTO): Promise<void>;
 }
 
 export { ICreateSetDTO, ISetsRepository };

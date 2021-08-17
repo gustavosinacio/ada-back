@@ -3,10 +3,10 @@ import { ImportSetsUseCase } from './ImportSetsUseCase';
 
 class ImportSetsController {
   constructor(private importSetsUseCase: ImportSetsUseCase) {}
-  handle(request: Request, response: Response): Response {
+  async handle(request: Request, response: Response): Promise<Response> {
     const { file } = request;
 
-    this.importSetsUseCase.execute(file);
+    await this.importSetsUseCase.execute(file);
 
     return response.send();
   }

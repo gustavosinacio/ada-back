@@ -2,8 +2,10 @@ import { SetsRepository } from '../../repositories/implementations/SetsRepositor
 import { CreateSetController } from './CreateSetController';
 import { CreateSetUseCase } from './CreateSetUseCase';
 
-const setsRepository = SetsRepository.getInstance();
-const createSetUseCase = new CreateSetUseCase(setsRepository);
-const createSetController = new CreateSetController(createSetUseCase);
+export default (): CreateSetController => {
+  const setsRepository = new SetsRepository();
+  const createSetUseCase = new CreateSetUseCase(setsRepository);
+  const createSetController = new CreateSetController(createSetUseCase);
 
-export { createSetController };
+  return createSetController;
+};

@@ -9,9 +9,13 @@ interface ICreateExerciseDTO {
 }
 
 interface IExercisesRepository {
-  create({ name, description, instructions }: ICreateExerciseDTO): void;
-  list(): Exercise[];
-  findByName(name: string): Exercise;
+  create({
+    name,
+    description,
+    instructions,
+  }: ICreateExerciseDTO): Promise<void>;
+  list(): Promise<Exercise[]>;
+  findByName(name: string): Promise<Exercise>;
 }
 
 export { ICreateExerciseDTO, IExercisesRepository };

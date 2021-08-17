@@ -1,3 +1,5 @@
+import { getRepository, Repository } from 'typeorm';
+
 import {
   IExercisesRepository,
   ICreateExerciseDTO,
@@ -7,9 +9,7 @@ import { Exercise } from '../../entities/Exercise';
 // singleton;
 
 class ExercisesRepository implements IExercisesRepository {
-  private exercises: Exercise[];
-
-  private static INSTANCE: ExercisesRepository;
+  private repository: Repository<Exercise>;
 
   /** Private on the constructor makes me unable to just create
    * a new SetsRepository.
@@ -17,38 +17,32 @@ class ExercisesRepository implements IExercisesRepository {
    * this code a SINGLETON
    */
 
-  private constructor() {
-    this.exercises = [];
+  constructor() {
+    this.repository = getRepository(Exercise);
   }
 
-  public static getInstance(): ExercisesRepository {
-    if (!ExercisesRepository.INSTANCE) {
-      ExercisesRepository.INSTANCE = new ExercisesRepository();
-    }
-    return ExercisesRepository.INSTANCE;
-  }
-
-  create({ name, description, instructions }: ICreateExerciseDTO): void {
-    const exercise = new Exercise();
-
-    Object.assign(exercise, {
+  async create({
+    name,
+    description,
+    instructions,
+  }: ICreateExerciseDTO): Promise<void> {
+    const exercise = this.repository.create({
       name,
       description,
       instructions,
-      created_at: new Date(),
     });
 
-    this.exercises.push(exercise);
+    await this.repository.save(exercise);
   }
 
-  list(): Exercise[] {
-    return this.exercises;
+  async list(): Promise<Exercise[]> {
+    const exercises = await this.repository.find();
+    return exercises;
   }
 
-  findByName(name: string): Exercise {
-    return this.exercises.find(
-      (exercise) => exercise.name.toLowerCase() === name.toLowerCase(),
-    );
+  async findByName(name: string): Promise<Exercise> {
+    const exercises = await this.repository.findOne({ name });
+    return exercises;
   }
 }
 

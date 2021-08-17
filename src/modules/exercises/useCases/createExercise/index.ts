@@ -2,10 +2,12 @@ import { ExercisesRepository } from '../../repositories/implementations/Exercise
 import { CreateExerciseController } from './CreateExerciseController';
 import { CreateExerciseUseCase } from './CreateExerciseUseCase';
 
-const exercisesRepository = ExercisesRepository.getInstance();
-const createExerciseUseCase = new CreateExerciseUseCase(exercisesRepository);
-const createExercisesController = new CreateExerciseController(
-  createExerciseUseCase,
-);
+export default (): CreateExerciseController => {
+  const exercisesRepository = new ExercisesRepository();
+  const createExerciseUseCase = new CreateExerciseUseCase(exercisesRepository);
+  const createExercisesController = new CreateExerciseController(
+    createExerciseUseCase,
+  );
 
-export { createExercisesController };
+  return createExercisesController;
+};

@@ -2,10 +2,12 @@ import { ExercisesRepository } from '../../repositories/implementations/Exercise
 import { ListExercisesController } from './ListExercisesController';
 import { ListExercisesUseCase } from './ListExercisesUseCase';
 
-const exercisesRepository = ExercisesRepository.getInstance();
-const listExercisesUseCase = new ListExercisesUseCase(exercisesRepository);
-const listExercisesController = new ListExercisesController(
-  listExercisesUseCase,
-);
+export default (): ListExercisesController => {
+  const exercisesRepository = new ExercisesRepository();
+  const listExercisesUseCase = new ListExercisesUseCase(exercisesRepository);
+  const listExercisesController = new ListExercisesController(
+    listExercisesUseCase,
+  );
 
-export { listExercisesController };
+  return listExercisesController;
+};

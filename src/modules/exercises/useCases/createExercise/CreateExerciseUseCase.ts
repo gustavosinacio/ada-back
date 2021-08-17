@@ -8,10 +8,12 @@ interface IRequest {
 class CreateExerciseUseCase {
   constructor(private exercisesRepository: IExercisesRepository) {}
 
-  execute({ name, description, instructions }: IRequest): void {
+  async execute({ name, description, instructions }: IRequest): Promise<void> {
     console.log('create exercise service');
 
-    const exerciseAlreadyExists = this.exercisesRepository.findByName(name);
+    const exerciseAlreadyExists = await this.exercisesRepository.findByName(
+      name,
+    );
 
     if (exerciseAlreadyExists) {
       throw new Error('Exercise already exists!');

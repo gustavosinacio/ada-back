@@ -1,7 +1,7 @@
 import { v4 as uuidV4 } from 'uuid';
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
 
-@Entity('Exercises')
+@Entity('exercises')
 class Exercise {
   @PrimaryColumn()
   id?: string;
@@ -13,7 +13,7 @@ class Exercise {
   description?: string;
 
   @Column()
-  instructions?: string[];
+  instructions?: string;
 
   @CreateDateColumn()
   created_at: Date;

@@ -4,10 +4,14 @@ import { CreateExerciseUseCase } from './CreateExerciseUseCase';
 class CreateExerciseController {
   constructor(private createExerciseUseCase: CreateExerciseUseCase) {}
 
-  handle(req: Request, res: Response): Response {
+  async handle(req: Request, res: Response): Promise<Response> {
     const { name, description, instructions } = req.body;
 
-    this.createExerciseUseCase.execute({ name, description, instructions });
+    await this.createExerciseUseCase.execute({
+      name,
+      description,
+      instructions,
+    });
 
     return res.status(201).send();
   }
