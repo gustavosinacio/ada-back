@@ -1,4 +1,4 @@
-import { Exercise } from '../../model/Exercise';
+import { Exercise } from '../../entities/Exercise';
 import { IExercisesRepository } from '../../repositories/IExercisesRepository';
 
 class ListExercisesUseCase {

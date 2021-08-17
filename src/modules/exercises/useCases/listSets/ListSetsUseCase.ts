@@ -1,4 +1,4 @@
-import { Set } from '../../model/Set';
+import { Set } from '../../entities/Set';
 import { ISetsRepository } from '../../repositories/ISetsRepository';
 
 class ListSetsUseCase {

@@ -2,7 +2,7 @@ import {
   IExercisesRepository,
   ICreateExerciseDTO,
 } from '../IExercisesRepository';
-import { Exercise } from '../../model/Exercise';
+import { Exercise } from '../../entities/Exercise';
 
 // singleton;
 
