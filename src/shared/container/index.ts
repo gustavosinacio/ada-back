@@ -4,6 +4,8 @@ import { IExercisesRepository } from '../../modules/exercises/repositories/IExer
 import { ExercisesRepository } from '../../modules/exercises/repositories/implementations/ExercisesRepository';
 import { ISetsRepository } from '../../modules/exercises/repositories/ISetsRepository';
 import { SetsRepository } from '../../modules/exercises/repositories/implementations/SetsRepository';
+import { ISessionsRepository } from '../../modules/sessions/repositories/ISessionRepository';
+import { SessionsRepository } from '../../modules/sessions/repositories/implementations/SessionsRepository';
 
 // IExerciseRepository
 container.registerSingleton<IExercisesRepository>(
@@ -12,6 +14,11 @@ container.registerSingleton<IExercisesRepository>(
 );
 
 container.registerSingleton<ISetsRepository>('SetsRepository', SetsRepository);
+
+container.registerSingleton<ISessionsRepository>(
+  'SessionsRepository',
+  SessionsRepository,
+);
 
 /**
  *  convert to tsyringe injectable:

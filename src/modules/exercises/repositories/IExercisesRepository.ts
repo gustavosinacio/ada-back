@@ -1,7 +1,6 @@
-// DTO: Data Transfer Object
-
 import { Exercise } from '../entities/Exercise';
 
+// DTO: Data Transfer Object
 interface ICreateExerciseDTO {
   name: string;
   description: string;
