@@ -1,9 +1,8 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 import { ListSetsByDateUseCase } from './ListSetsByDateUseCase';
 
 class ListSetsByDateController {
-  constructor(private listSetsByDateUseCase: ListSetsByDateUseCase) {}
-
   handle(request: Request, response: Response): Response {
     const { year, month, day } = request.query;
     if (
@@ -11,7 +10,9 @@ class ListSetsByDateController {
       typeof month === 'string' &&
       typeof day === 'string'
     ) {
-      const setsByDate = this.listSetsByDateUseCase.execute({
+      const listSetsByDateUseCase = container.resolve(ListSetsByDateUseCase);
+
+      const setsByDate = listSetsByDateUseCase.execute({
         year,
         month,
         day,

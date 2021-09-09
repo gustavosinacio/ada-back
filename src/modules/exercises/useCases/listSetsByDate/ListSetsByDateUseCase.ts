@@ -1,3 +1,4 @@
+import { inject, injectable } from 'tsyringe';
 import { Set } from '../../entities/Set';
 import { ISetsRepository } from '../../repositories/ISetsRepository';
 
@@ -7,10 +8,14 @@ interface IRequest {
   year: string;
 }
 
+@injectable()
 class ListSetsByDateUseCase {
-  constructor(private setsRepository: ISetsRepository) {}
+  constructor(
+    @inject('SetsRepository')
+    private setsRepository: ISetsRepository,
+  ) {}
 
-  execute({ day, month, year }: IRequest): Set[] {
+  execute({ day, month, year }: IRequest): Promise<Set[]> {
     const numberedYear = parseInt(year, 10);
     const numberedMonth = parseInt(month, 10);
     const numberedDay = parseInt(day, 10);

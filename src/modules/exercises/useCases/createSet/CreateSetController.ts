@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 import { CreateSetUseCase } from './CreateSetUseCase';
 
 class CreateSetController {
-  constructor(private createSetUseCase: CreateSetUseCase) {}
   handle(req: Request, res: Response): Response {
     const {
       session_name,
@@ -17,7 +17,10 @@ class CreateSetController {
       set_notes,
       rpe,
     } = req.body;
-    this.createSetUseCase.execute({
+
+    const createSetUseCase = container.resolve(CreateSetUseCase);
+
+    createSetUseCase.execute({
       session_name,
       exercise_name,
       set_order,

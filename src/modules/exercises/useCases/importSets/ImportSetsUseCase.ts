@@ -1,5 +1,6 @@
 import csv from 'csv-parser';
 import fs from 'fs';
+import { inject, injectable } from 'tsyringe';
 import {
   ICreateSetDTO,
   ISetsRepository,
@@ -23,8 +24,12 @@ interface IFormatedSet extends ICreateSetDTO {
   created_at: Date;
 }
 
+@injectable()
 class ImportSetsUseCase {
-  constructor(private setsRepository: ISetsRepository) {}
+  constructor(
+    @inject('SetsRepository')
+    private setsRepository: ISetsRepository,
+  ) {}
 
   loadSets(file: Express.Multer.File): Promise<IFormatedSet[]> {
     return new Promise((resolve, reject) => {

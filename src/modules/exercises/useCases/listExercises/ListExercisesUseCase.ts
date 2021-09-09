@@ -4,7 +4,7 @@ import { IExercisesRepository } from '../../repositories/IExercisesRepository';
 class ListExercisesUseCase {
   constructor(private exercisesRepository: IExercisesRepository) {}
 
-  execute(): Exercise[] {
+  execute(): Promise<Exercise[]> {
     console.log('list exercises service');
 
     const exercises = this.exercisesRepository.list();

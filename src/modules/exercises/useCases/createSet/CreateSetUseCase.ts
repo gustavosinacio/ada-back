@@ -1,3 +1,4 @@
+import { inject, injectable } from 'tsyringe';
 import { ISetsRepository } from '../../repositories/ISetsRepository';
 
 interface IRequest {
@@ -14,8 +15,12 @@ interface IRequest {
   rpe: number;
 }
 
+@injectable()
 class CreateSetUseCase {
-  constructor(private setsRepository: ISetsRepository) {}
+  constructor(
+    @inject('SetsRepository')
+    private setsRepository: ISetsRepository,
+  ) {}
   execute({
     session_name,
     exercise_name,
