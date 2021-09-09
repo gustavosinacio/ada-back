@@ -26,7 +26,9 @@ class ExercisesRepository implements IExercisesRepository {
     description,
     instructions,
   }: ICreateExerciseDTO): Promise<void> {
-    const exercise = this.repository.create({
+    const exercise = this.repository.create();
+
+    Object.assign(exercise, {
       name,
       description,
       instructions,

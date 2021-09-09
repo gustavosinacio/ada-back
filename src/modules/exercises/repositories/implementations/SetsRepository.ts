@@ -34,7 +34,9 @@ class SetsRepository implements ISetsRepository {
   }: ICreateSetDTO): Promise<void> {
     let date = new Date();
 
-    const set = this.repository.create({
+    const set = this.repository.create();
+
+    Object.assign(set, {
       session_name,
       exercise_name,
       set_order,
@@ -68,6 +70,7 @@ class SetsRepository implements ISetsRepository {
     //   }
     // });
     // return filteredSets;
+    return [];
   }
 }
 
