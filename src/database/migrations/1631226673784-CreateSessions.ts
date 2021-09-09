@@ -20,6 +20,11 @@ export class CreateSessions1631226673784 implements MigrationInterface {
             type: 'timestamp',
             default: 'now()',
           },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
         ],
       }),
     );
