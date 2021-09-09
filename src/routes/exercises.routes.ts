@@ -1,16 +1,16 @@
+import 'reflect-metadata';
 import { Router } from 'express';
 
-import listExercisesController from '../modules/exercises/useCases/listExercises';
+import { ListExercisesController } from '../modules/exercises/useCases/listExercises/ListExercisesController';
 import { CreateExerciseController } from '../modules/exercises/useCases/createExercise/CreateExerciseController';
 
 const exercisesRoutes = Router();
 
 const createExercisesController = new CreateExerciseController();
+const listExercisesController = new ListExercisesController();
 
 exercisesRoutes.post('/', createExercisesController.handle);
 
-exercisesRoutes.get('/', (request, response) => {
-  return listExercisesController().handle(request, response);
-});
+exercisesRoutes.get('/', listExercisesController.handle);
 
 export { exercisesRoutes };

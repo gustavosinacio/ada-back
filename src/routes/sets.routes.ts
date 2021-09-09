@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import multer from 'multer';
 
-// import { SetsRepository } from '../modules/exercises/repositories/SetsRepository';
 import { CreateSetController } from '../modules/exercises/useCases/createSet/CreateSetController';
 import { ListSetsController } from '../modules/exercises/useCases/listSets/ListSetsController';
 import { ImportSetsController } from '../modules/exercises/useCases/importSets/ImportSetsController';

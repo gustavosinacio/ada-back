@@ -1,8 +1,13 @@
+import { inject, injectable } from 'tsyringe';
 import { Exercise } from '../../entities/Exercise';
 import { IExercisesRepository } from '../../repositories/IExercisesRepository';
 
+@injectable()
 class ListExercisesUseCase {
-  constructor(private exercisesRepository: IExercisesRepository) {}
+  constructor(
+    @inject('ExercisesRepository')
+    private exercisesRepository: IExercisesRepository,
+  ) {}
 
   execute(): Promise<Exercise[]> {
     console.log('list exercises service');
