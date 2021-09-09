@@ -1,13 +1,15 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
+
 import { CreateExerciseUseCase } from './CreateExerciseUseCase';
 
 class CreateExerciseController {
-  constructor(private createExerciseUseCase: CreateExerciseUseCase) {}
-
   async handle(req: Request, res: Response): Promise<Response> {
     const { name, description, instructions } = req.body;
 
-    await this.createExerciseUseCase.execute({
+    const createExerciseUseCase = container.resolve(CreateExerciseUseCase);
+
+    await createExerciseUseCase.execute({
       name,
       description,
       instructions,
