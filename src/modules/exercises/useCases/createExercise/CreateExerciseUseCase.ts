@@ -1,5 +1,6 @@
-import { IExercisesRepository } from '../../repositories/IExercisesRepository';
 import { inject, injectable } from 'tsyringe';
+
+import { IExercisesRepository } from '../../repositories/IExercisesRepository';
 
 interface IRequest {
   name: string;
