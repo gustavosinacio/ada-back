@@ -22,7 +22,7 @@ class Exercise {
   description?: string;
 
   @Column()
-  instructions?: string;
+  instructions?: string[];
 
   @UpdateDateColumn()
   updated_at: Date;

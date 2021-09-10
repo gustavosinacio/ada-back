@@ -1,0 +1,67 @@
+
+
+title {label: "ada Entity Relationship Diagram", size: "20"}
+
+[Exercise] {bgcolor: "#faa"}
+*id
+name {label: "string"}
+description {label: "string, nullable"}
+
+
+[Instructions] {bgcolor: "#afa"}
+*id
+text {label: "string"}
+instruction_order {label: "number"}
+exercise_id {label: "FK"}
+
+[Sets] {bgcolor: "#aaf"}
+*id
+set_order {label: "number"}
+weight_kg {label: "number"}
+reps {label: "number"}
+rpe {label: "number, nullable"}
+distance_meters {label: "number, nullable"}
+seconds {label: "number, nullable"}
+exercise_id {label: "FK"}
+session_id {label: "FK"}
+
+
+[Notes] {bgcolor: "#fff"}
+*id
+title {label: "string, nullable"}
+text {label: "string"}
+exercise_id {label: "FK, nullable"}
+set_id {label: "FK, nullable"}
+session_id {label: "FK, nullable"}
+
+[Sessions] {bgcolor: "#aff"}
+*id
+name {label: "string"}
+description {label: "string, nullable"}
+started_at {label: "Date"}
+ended_at {label: "Date"}
+
+
+Instructions +--1 Exercise
+Set +--1 Exercise
+Set 1--+ Session
+
+Exercises 1--* Notes
+Sessions 1--* Notes
+Set 1--* Notes
+
+# Entities are declared in '[' ... ']'. All attributes after the entity header
+# up until the end of the file (or the next entity declaration) correspond
+# to this entity.
+
+# Each relationship must be between exactly two entities, which need not
+# be distinct. Each entity in the relationship has exactly one of four
+# possible cardinalities:
+#
+# Cardinality    Syntax
+# 0 or 1         0/?
+# exactly 1      1
+# 0 or more      *
+# 1 or more      +
+
+
