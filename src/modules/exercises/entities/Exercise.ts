@@ -21,9 +21,6 @@ class Exercise {
   @Column()
   description?: string;
 
-  @Column()
-  instructions?: string[];
-
   @UpdateDateColumn()
   updated_at: Date;
 
@@ -32,6 +29,14 @@ class Exercise {
 
   @OneToMany(() => Note, (note) => note.exercise)
   notes: Note[];
+
+  // TODO change to fk
+  // @OneToMany(() => Instructions, (instruction) => instruction.exercise)
+  // instructions: Instructions[];
+
+  //TODO remove this
+  @Column()
+  instructions?: string;
 
   constructor() {
     if (!this.id) {
