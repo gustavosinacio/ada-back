@@ -3,17 +3,14 @@ import { container } from 'tsyringe';
 import { CreateSessionUseCase } from './CreateSessionUseCase';
 
 class CreateSessionController {
-  handle(req: Request, res: Response): Response {
+  async handle(req: Request, res: Response): Promise<Response> {
     const { name } = req.body;
 
     const createSessionUseCase = container.resolve(CreateSessionUseCase);
 
-    createSessionUseCase.execute({ name });
+    const session = await createSessionUseCase.execute({ name });
 
-    return res
-      .status(201)
-      .json({ message: 'Session created successfully' })
-      .send();
+    return res.status(201).json(session);
   }
 }
 

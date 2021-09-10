@@ -9,10 +9,12 @@ class SessionsRepository implements ISessionsRepository {
     this.repository = getRepository(Session);
   }
 
-  async create({ name }: ICreateSessionDTO): Promise<void> {
+  async create({ name }: ICreateSessionDTO): Promise<Session> {
     const session = this.repository.create({ name });
 
     await this.repository.save(session);
+
+    return session;
   }
 
   async list(): Promise<Session[]> {

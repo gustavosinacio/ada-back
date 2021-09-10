@@ -10,7 +10,7 @@ interface ICreateSessionDTO {
 }
 
 interface ISessionsRepository {
-  create({ name }: ICreateSessionDTO): Promise<void>;
+  create({ name }: ICreateSessionDTO): Promise<Session>;
   list(): Promise<Session[]>;
 }
 

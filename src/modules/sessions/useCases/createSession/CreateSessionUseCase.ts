@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import { Session } from '../../entities/Session';
 import { ISessionsRepository } from '../../repositories/ISessionsRepository';
 
 interface IRequest {
@@ -12,10 +13,12 @@ class CreateSessionUseCase {
     private sessionsRepository: ISessionsRepository,
   ) {}
 
-  async execute({ name }: IRequest): Promise<void> {
+  async execute({ name }: IRequest): Promise<Session> {
     console.log('create session service');
 
-    this.sessionsRepository.create({ name });
+    const session = await this.sessionsRepository.create({ name });
+
+    return session;
   }
 }
 
