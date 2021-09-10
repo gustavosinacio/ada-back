@@ -25,7 +25,7 @@ class ExercisesRepository implements IExercisesRepository {
     name,
     description,
     instructions,
-  }: ICreateExerciseDTO): Promise<void> {
+  }: ICreateExerciseDTO): Promise<Exercise> {
     const exercise = this.repository.create();
 
     Object.assign(exercise, {
@@ -35,6 +35,8 @@ class ExercisesRepository implements IExercisesRepository {
     });
 
     await this.repository.save(exercise);
+
+    return exercise;
   }
 
   async list(): Promise<Exercise[]> {

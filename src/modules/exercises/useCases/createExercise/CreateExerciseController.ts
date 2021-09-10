@@ -9,13 +9,13 @@ class CreateExerciseController {
 
     const createExerciseUseCase = container.resolve(CreateExerciseUseCase);
 
-    await createExerciseUseCase.execute({
+    const exercise = await createExerciseUseCase.execute({
       name,
       description,
       instructions,
     });
 
-    return res.status(201).send();
+    return res.status(201).json(exercise);
   }
 }
 

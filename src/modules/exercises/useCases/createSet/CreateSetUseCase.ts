@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import { Set } from '../../entities/Set';
 import { ISetsRepository } from '../../repositories/ISetsRepository';
 
 interface IRequest {
@@ -21,7 +22,7 @@ class CreateSetUseCase {
     @inject('SetsRepository')
     private setsRepository: ISetsRepository,
   ) {}
-  execute({
+  async execute({
     session_name,
     exercise_name,
     set_order,
@@ -33,10 +34,10 @@ class CreateSetUseCase {
     session_notes,
     set_notes,
     rpe,
-  }: IRequest): void {
+  }: IRequest): Promise<Set> {
     console.log('create set service');
 
-    this.setsRepository.create({
+    const set = await this.setsRepository.create({
       session_name,
       exercise_name,
       set_order,
@@ -49,6 +50,8 @@ class CreateSetUseCase {
       set_notes,
       rpe,
     });
+
+    return set;
   }
 }
 

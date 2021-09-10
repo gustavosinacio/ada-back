@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 import { CreateSetUseCase } from './CreateSetUseCase';
 
 class CreateSetController {
-  handle(req: Request, res: Response): Response {
+  async handle(req: Request, res: Response): Promise<Response> {
     const {
       session_name,
       exercise_name,
@@ -20,7 +20,7 @@ class CreateSetController {
 
     const createSetUseCase = container.resolve(CreateSetUseCase);
 
-    createSetUseCase.execute({
+    const set = await createSetUseCase.execute({
       session_name,
       exercise_name,
       set_order,
@@ -34,7 +34,7 @@ class CreateSetController {
       rpe,
     });
 
-    return res.status(201).json({ message: 'Success' }).send();
+    return res.status(201).json(set);
   }
 }
 

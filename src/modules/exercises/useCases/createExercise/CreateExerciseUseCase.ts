@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import { Exercise } from '../../entities/Exercise';
 
 import { IExercisesRepository } from '../../repositories/IExercisesRepository';
 
@@ -15,7 +16,11 @@ class CreateExerciseUseCase {
     private exercisesRepository: IExercisesRepository,
   ) {}
 
-  async execute({ name, description, instructions }: IRequest): Promise<void> {
+  async execute({
+    name,
+    description,
+    instructions,
+  }: IRequest): Promise<Exercise> {
     console.log('create exercise service');
 
     const exerciseAlreadyExists = await this.exercisesRepository.findByName(
@@ -26,7 +31,13 @@ class CreateExerciseUseCase {
       throw new Error('Exercise already exists!');
     }
 
-    this.exercisesRepository.create({ name, description, instructions });
+    const exercise = this.exercisesRepository.create({
+      name,
+      description,
+      instructions,
+    });
+
+    return exercise;
   }
 }
 

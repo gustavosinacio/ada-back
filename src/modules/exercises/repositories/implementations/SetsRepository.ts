@@ -1,6 +1,9 @@
 import { getRepository, Repository } from 'typeorm';
+
 import { Set } from '../../entities/Set';
 import { ICreateSetDTO, ISetsRepository } from '../ISetsRepository';
+
+import { Note } from '../../../notes/entities/Note';
 
 // singleton;
 
@@ -31,7 +34,7 @@ class SetsRepository implements ISetsRepository {
     set_notes,
     rpe,
     created_at,
-  }: ICreateSetDTO): Promise<void> {
+  }: ICreateSetDTO): Promise<Set> {
     let date = new Date();
 
     const set = this.repository.create();
@@ -44,14 +47,24 @@ class SetsRepository implements ISetsRepository {
       reps,
       distance_meters,
       seconds,
-      notes,
-      session_notes,
-      set_notes,
+      // notes,
+      // session_notes,
+      // set_notes,
       rpe,
       created_at: created_at || date,
     });
+    const Notes = notes.map((note) => {
+      const newNote = new Note();
+      newNote.text = note;
+
+      return newNote;
+    });
+
+    set.notes = Notes;
 
     await this.repository.save(set);
+
+    return set;
   }
 
   async list(): Promise<Set[]> {

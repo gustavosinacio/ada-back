@@ -40,7 +40,7 @@ interface ISetsRepository {
     set_notes,
     rpe,
     created_at,
-  }: ICreateSetDTO): Promise<void>;
+  }: ICreateSetDTO): Promise<Set>;
 }
 
 export { ICreateSetDTO, ISetsRepository };

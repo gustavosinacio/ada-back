@@ -12,7 +12,7 @@ interface IExercisesRepository {
     name,
     description,
     instructions,
-  }: ICreateExerciseDTO): Promise<void>;
+  }: ICreateExerciseDTO): Promise<Exercise>;
   list(): Promise<Exercise[]>;
   findByName(name: string): Promise<Exercise>;
 }
