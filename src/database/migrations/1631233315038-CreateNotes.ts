@@ -21,6 +21,10 @@ export class CreateNotes1631233315038 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'order',
+            type: 'number',
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',

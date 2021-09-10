@@ -1,15 +1,14 @@
 import { getRepository, Repository } from 'typeorm';
 
 import { Set } from '../../entities/Set';
-import { ICreateSetDTO, ISetsRepository } from '../ISetsRepository';
-
 import { Note } from '../../../notes/entities/Note';
+import { ICreateSetDTO, ISetsRepository } from '../ISetsRepository';
 
 // singleton;
 
 class SetsRepository implements ISetsRepository {
   private repository: Repository<Set>;
-
+  private notesRepositry: Repository<Note>;
   private static INSTANCE: SetsRepository;
 
   /** Private on the constructor makes me unable to just create
@@ -19,6 +18,7 @@ class SetsRepository implements ISetsRepository {
    */
   constructor() {
     this.repository = getRepository(Set);
+    this.notesRepositry = getRepository(Note);
   }
 
   async create({
@@ -53,11 +53,15 @@ class SetsRepository implements ISetsRepository {
       rpe,
       created_at: created_at || date,
     });
-    const Notes = notes.map((note) => {
-      const newNote = new Note();
-      newNote.text = note;
 
-      return newNote;
+    const Notes = [];
+
+    notes.forEach(async (note) => {
+      const newNote = this.notesRepositry.create({ text: note });
+
+      await this.notesRepositry.save(newNote);
+
+      Notes.push(newNote);
     });
 
     set.notes = Notes;

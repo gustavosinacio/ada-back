@@ -24,6 +24,9 @@ class Note {
   @Column()
   text: string;
 
+  @Column()
+  order: string;
+
   @UpdateDateColumn()
   updated_at: Date;
 
