@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import { Note } from '../../entities/Note';
 import { INotesRepository } from '../../repositories/INotesRepository';
 
 interface IRequest {
@@ -13,10 +14,12 @@ class CreateNoteUseCase {
     private notesRepository: INotesRepository,
   ) {}
 
-  async execute({ title, text }: IRequest): Promise<void> {
+  async execute({ title, text }: IRequest): Promise<Note> {
     console.log('create note service');
 
-    this.notesRepository.create({ title, text });
+    const note = await this.notesRepository.create({ title, text });
+
+    return note;
   }
 }
 

@@ -6,7 +6,7 @@ interface ICreateNoteDTO {
 }
 
 interface INotesRepository {
-  create({ title, text }: ICreateNoteDTO): Promise<void>;
+  create({ title, text }: ICreateNoteDTO): Promise<Note>;
   list(): Promise<Note[]>;
 }
 
