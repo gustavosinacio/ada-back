@@ -1,6 +1,6 @@
 import { getRepository, Repository } from 'typeorm';
 import { Session } from '../../entities/Session';
-import { ICreateSessionDTO, ISessionsRepository } from '../ISessionRepository';
+import { ICreateSessionDTO, ISessionsRepository } from '../ISessionsRepository';
 
 class SessionsRepository implements ISessionsRepository {
   private repository: Repository<Session>;

@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { Session } from '../../entities/Session';
-import { ISessionsRepository } from '../../repositories/ISessionRepository';
+import { ISessionsRepository } from '../../repositories/ISessionsRepository';
 
 @injectable()
 class ListSessionsUseCase {

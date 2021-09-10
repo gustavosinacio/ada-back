@@ -4,8 +4,10 @@ import { IExercisesRepository } from '../../modules/exercises/repositories/IExer
 import { ExercisesRepository } from '../../modules/exercises/repositories/implementations/ExercisesRepository';
 import { ISetsRepository } from '../../modules/exercises/repositories/ISetsRepository';
 import { SetsRepository } from '../../modules/exercises/repositories/implementations/SetsRepository';
-import { ISessionsRepository } from '../../modules/sessions/repositories/ISessionRepository';
+import { ISessionsRepository } from '../../modules/sessions/repositories/ISessionsRepository';
 import { SessionsRepository } from '../../modules/sessions/repositories/implementations/SessionsRepository';
+import { INotesRepository } from '../../modules/notes/repositories/INotesRepository';
+import { NotesRepository } from '../../modules/notes/repositories/implementations/NotesRepository';
 
 // IExerciseRepository
 container.registerSingleton<IExercisesRepository>(
@@ -18,6 +20,11 @@ container.registerSingleton<ISetsRepository>('SetsRepository', SetsRepository);
 container.registerSingleton<ISessionsRepository>(
   'SessionsRepository',
   SessionsRepository,
+);
+
+container.registerSingleton<INotesRepository>(
+  'NotesRepository',
+  NotesRepository,
 );
 
 /**

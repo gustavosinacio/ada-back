@@ -1,5 +1,14 @@
-import { Column, Entity, PrimaryColumn, CreateDateColumn } from 'typeorm';
 import { v4 } from 'uuid';
+import {
+  Column,
+  Entity,
+  PrimaryColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany,
+} from 'typeorm';
+
+import { Note } from '../../../modules/notes/entities/Note';
 
 @Entity('sessions')
 class Session {
@@ -9,8 +18,14 @@ class Session {
   @Column()
   name: string;
 
+  @UpdateDateColumn()
+  updated_at: Date;
+
   @CreateDateColumn()
   created_at: Date;
+
+  @OneToMany(() => Note, (note) => note.session)
+  notes: Note[];
 
   constructor() {
     if (!this.id) {
