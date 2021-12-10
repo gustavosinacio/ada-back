@@ -2,12 +2,18 @@ import { container } from 'tsyringe';
 
 import { IExercisesRepository } from '../../modules/exercises/repositories/IExercisesRepository';
 import { ExercisesRepository } from '../../modules/exercises/repositories/implementations/ExercisesRepository';
+
 import { ISetsRepository } from '../../modules/exercises/repositories/ISetsRepository';
 import { SetsRepository } from '../../modules/exercises/repositories/implementations/SetsRepository';
+
 import { ISessionsRepository } from '../../modules/sessions/repositories/ISessionsRepository';
 import { SessionsRepository } from '../../modules/sessions/repositories/implementations/SessionsRepository';
+
 import { INotesRepository } from '../../modules/notes/repositories/INotesRepository';
 import { NotesRepository } from '../../modules/notes/repositories/implementations/NotesRepository';
+
+import { IUsersRepository } from '../../modules/users/repositories/IUsersRepository';
+import { UsersRepository } from '../../modules/users/repositories/implementations/UsersRepository';
 
 // IExerciseRepository
 container.registerSingleton<IExercisesRepository>(
@@ -25,6 +31,11 @@ container.registerSingleton<ISessionsRepository>(
 container.registerSingleton<INotesRepository>(
   'NotesRepository',
   NotesRepository,
+);
+
+container.registerSingleton<IUsersRepository>(
+  'UsersRepository',
+  UsersRepository,
 );
 
 /**

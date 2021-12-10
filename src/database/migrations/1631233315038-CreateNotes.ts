@@ -22,7 +22,7 @@ export class CreateNotes1631233315038 implements MigrationInterface {
           },
           {
             name: 'order',
-            type: 'number',
+            type: 'integer',
           },
           {
             name: 'created_at',
