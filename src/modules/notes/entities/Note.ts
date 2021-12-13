@@ -25,7 +25,7 @@ class Note {
   text: string;
 
   @Column()
-  order: string;
+  order: number;
 
   @UpdateDateColumn()
   updated_at: Date;

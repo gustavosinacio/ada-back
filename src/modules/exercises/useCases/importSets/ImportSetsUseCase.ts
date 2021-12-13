@@ -31,7 +31,7 @@ class ImportSetsUseCase {
     private setsRepository: ISetsRepository,
   ) {}
 
-  loadSets(file: Express.Multer.File): Promise<IFormatedSet[]> {
+  loadSetsFromFile(file: Express.Multer.File): Promise<IFormatedSet[]> {
     return new Promise((resolve, reject) => {
       const stream = fs.createReadStream(file.path);
       const sets: IFormatedSet[] = [];
@@ -86,7 +86,12 @@ class ImportSetsUseCase {
   async execute(file: Express.Multer.File): Promise<void> {
     console.log('import sets service');
 
-    const sets = await this.loadSets(file);
+    const sets = await this.loadSetsFromFile(file);
+
+    /**
+     * Separate sets in exercises
+     *
+     */
 
     sets.map((set) => this.setsRepository.create(set));
   }

@@ -47,21 +47,28 @@ class SetsRepository implements ISetsRepository {
       reps,
       distance_meters,
       seconds,
-      // notes,
-      // session_notes,
-      // set_notes,
+      notes,
       rpe,
       created_at: created_at || date,
     });
 
     const Notes = [];
 
-    notes.forEach(async (note) => {
-      const newNote = this.notesRepositry.create({ text: note });
+    // if (set_notes) console.log(98211, set_notes);
+    // if (session_notes[0]) console.log(98212, session_notes);
 
-      await this.notesRepositry.save(newNote);
+    notes.forEach(async (note, index) => {
+      if (note) {
+        const newNote = this.notesRepositry.create({
+          title: `${exercise_name} - set ${set_order}`,
+          text: note,
+          order: index,
+        });
 
-      Notes.push(newNote);
+        await this.notesRepositry.save(newNote);
+
+        Notes.push(newNote);
+      }
     });
 
     set.notes = Notes;
