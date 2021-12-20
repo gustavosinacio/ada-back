@@ -23,6 +23,7 @@ export class CreateNotes1631233315038 implements MigrationInterface {
           {
             name: 'order',
             type: 'integer',
+            isNullable: true,
           },
           {
             name: 'created_at',

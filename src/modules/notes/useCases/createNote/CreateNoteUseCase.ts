@@ -5,6 +5,7 @@ import { INotesRepository } from '../../repositories/INotesRepository';
 interface IRequest {
   title?: string;
   text: string;
+  order?: number;
 }
 
 @injectable()
@@ -14,10 +15,10 @@ class CreateNoteUseCase {
     private notesRepository: INotesRepository,
   ) {}
 
-  async execute({ title, text }: IRequest): Promise<Note> {
+  async execute({ title, text, order }: IRequest): Promise<Note> {
     console.log('create note service');
 
-    const note = await this.notesRepository.create({ title, text });
+    const note = await this.notesRepository.create({ title, text, order });
 
     return note;
   }

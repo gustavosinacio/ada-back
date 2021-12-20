@@ -2,3 +2,4 @@ node_modules
 strong*.csv
 yarn.lock
 dist
+.env

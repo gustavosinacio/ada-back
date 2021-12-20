@@ -10,8 +10,8 @@ class NotesRepository implements INotesRepository {
     this.repository = getRepository(Note);
   }
 
-  async create({ title, text }: ICreateNoteDTO): Promise<Note> {
-    const note = this.repository.create({ title, text });
+  async create({ title, text, order }: ICreateNoteDTO): Promise<Note> {
+    const note = this.repository.create({ title, text, order });
 
     await this.repository.save(note);
 

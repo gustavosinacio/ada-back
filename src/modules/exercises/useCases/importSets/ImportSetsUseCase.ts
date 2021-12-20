@@ -67,7 +67,7 @@ class ImportSetsUseCase {
             seconds: parseInt(seconds, 10),
             notes: [notes],
             session_notes: [session_notes],
-            rpe: parseInt(rpe, 10),
+            rpe: rpe ? parseInt(rpe, 10) : null,
             ...rest,
           };
 
@@ -87,6 +87,10 @@ class ImportSetsUseCase {
     console.log('import sets service');
 
     const sets = await this.loadSetsFromFile(file);
+
+    const sessions = [];
+
+    sets;
 
     /**
      * Separate sets in exercises
